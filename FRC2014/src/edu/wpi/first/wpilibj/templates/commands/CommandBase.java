@@ -20,10 +20,6 @@ public abstract class CommandBase extends Command {
     
     public static void init() {
         oi = new OI();
-        
-        
-        SmartDashboard.putData(driveTrain);
-        
     }
 
     public CommandBase(String name) {

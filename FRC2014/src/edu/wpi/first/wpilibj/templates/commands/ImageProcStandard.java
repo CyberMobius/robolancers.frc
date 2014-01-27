@@ -8,26 +8,24 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 /**
  *
- * @author Armond
+ * @author RoboLancers
  */
-public class RegulateCompressor extends CommandBase{
 
-    public RegulateCompressor(){
-        requires(compressor);
-    }
+public class ImageProcStandard extends CommandBase {
+    boolean hasFinished;
     
     protected void initialize() {
         
     }
 
     protected void execute() {
-        //CommandBase.compressor.runCompressor();
+        
     }
 
-    protected boolean isFinished() { return false; }
+    protected boolean isFinished() { return hasFinished; }
 
-    protected void end() {}
+    protected void end() { }
 
-    protected void interrupted() {}
+    protected void interrupted() { }
     
 }

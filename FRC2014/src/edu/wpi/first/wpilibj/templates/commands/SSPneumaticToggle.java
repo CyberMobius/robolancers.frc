@@ -6,6 +6,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
  */
 public class SSPneumaticToggle extends CommandBase{
     DoubleSolenoid ss;
-    boolean hasFinished = false;
+    private boolean hasFinished = false;
     
     public SSPneumaticToggle(DoubleSolenoid ss){
         this.ss = ss;
@@ -26,24 +27,19 @@ public class SSPneumaticToggle extends CommandBase{
     public void execute(){
         if(isHighGear()){ 
             RobotMap.HIGH_GEAR = false;
-            RobotMap.LOW_GEAR = true;
-            
-            setGearType(RobotMap.TYPE_LOW_GEAR);
-        }else{
+            setGearType();
+        }else{            
             RobotMap.HIGH_GEAR = true;
-            RobotMap.LOW_GEAR = false;
-            
-            setGearType(RobotMap.TYPE_HIGH_GEAR);
+            setGearType();
         }
-        
+        SmartDashboard.putNumber("Sonic Shifter", getGearType());
         hasFinished = true;
     }
     
-    public void setGearType(int type){
-        if(type == RobotMap.TYPE_HIGH_GEAR){
+    public void setGearType(){
+        if(isHighGear()){
             ss.set(Value.kForward);
-        }
-        if(type == RobotMap.TYPE_LOW_GEAR){
+        }else{
             ss.set(Value.kReverse);
         }
     }
@@ -55,5 +51,10 @@ public class SSPneumaticToggle extends CommandBase{
     protected void interrupted(){}
     
     public boolean isHighGear(){ return RobotMap.HIGH_GEAR; }
+    
+    public int getGearType(){ //THIS METHOD IS JUST FOR THE SMART DASHBOARD
+        if(isHighGear()) return 0;
+        else return 1;
+    }
     
 }
