@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.DriveLoop;
+import edu.wpi.first.wpilibj.templates.commands.DriveTrain.DriveLoop;
 
 /**
  * @author Armond
@@ -28,24 +29,15 @@ public class DriveTrain extends Subsystem{
     public DriveTrain(){
         super("Drive Train");
         
-       leftFrontMotor = new Victor(RobotMap.LEFT_MOTOR_FRONT);
-       leftRearMotor = new Victor(RobotMap.LEFT_MOTOR_REAR);
-       rightFrontMotor = new Victor(RobotMap.RIGHT_MOTOR_FRONT);
-       rightRearMotor = new Victor(RobotMap.RIGHT_MOTOR_REAR);
-       if(RobotMap.SLIDE_DRIVE){
-           sliderMotor1 = new Victor(RobotMap.SLIDER_MOTOR_1);
-           sliderMotor2 = new Victor(RobotMap.SLIDER_MOTOR_2);
-       }
+       leftFrontMotor = new Talon(RobotMap.LEFT_MOTOR_FRONT);
+       leftRearMotor = new Talon(RobotMap.LEFT_MOTOR_REAR);
+       rightFrontMotor = new Talon(RobotMap.RIGHT_MOTOR_FRONT);
+       rightRearMotor = new Talon(RobotMap.RIGHT_MOTOR_REAR);
        
        sonicShifterPair = new DoubleSolenoid(1,2);
        
        driveStandard = new RobotDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
        driveStandard.setSafetyEnabled(false); //have this so compiler wont show "Robot Drive not outputting enough data"
-       
-       if(RobotMap.SLIDE_DRIVE){ 
-       driveSlide = new RobotDrive(sliderMotor1, sliderMotor2, null, null);
-       driveSlide.setSafetyEnabled(false);
-       }
        
        sonicShifterPair.set(Value.kForward);
     }
@@ -66,16 +58,6 @@ public class DriveTrain extends Subsystem{
             driveStandard.tankDrive(leftDrive,rightDrive);
         }
     }
-    
-     public void moveWithJoystickSlide(double moveValueX, double moveValueY, double rotateValue, double speed){
-        if (RobotMap.ARCADE_DRIVE){
-            y = (moveValueY * moveValueY * moveValueY) *speed;
-            x = (moveValueX * moveValueX * moveValueX) *speed;
-            rotateValue = (rotateValue * rotateValue * rotateValue) *speed;
-            driveStandard.arcadeDrive(y, rotateValue);
-            driveSlide.arcadeDrive(x, 0);
-        }
-     }
      
      public int getGearType(){
          if(RobotMap.HIGH_GEAR = false){ //in low gear
