@@ -13,12 +13,6 @@ public class RobotMap {
     //Run Mode
     public static final boolean DEBUG_MODE = false;
     
-    //Joystick Type
-    public static final boolean MONO_JOYSTICK = false;
-    public static final boolean DUAL_JOYSTICK = false;
-    public static final boolean WHEEL = false;
-    public static final boolean GAME_PAD = true;
-    
     //Drive Type
     public static final boolean ARCADE_DRIVE = false;
     public static final boolean TANK_DRIVE = false;
@@ -26,11 +20,14 @@ public class RobotMap {
     
     //Motor Values
     public static final int LEFT_MOTOR_FRONT = 1;
-    public static final int LEFT_MOTOR_REAR = 4;
-    public static final int RIGHT_MOTOR_FRONT = 2;
-    public static final int RIGHT_MOTOR_REAR = 3;
+    public static final int LEFT_MOTOR_REAR = 2;
+    public static final int RIGHT_MOTOR_FRONT = 3;
+    public static final int RIGHT_MOTOR_REAR = 4;
     public static final int ROLLER_MOTOR = 5;
     public static final int RAMP_MOTOR = 6;
+    public static final int LEFT_FLAP_MOTOR = 7;
+    public static final int RIGHT_FLAP_MOTOR = 8;
+
     
     
     //Drive Type(Wheel Based Drive)
@@ -39,6 +36,8 @@ public class RobotMap {
     
     //Sonic Shifter
     public static boolean HIGH_GEAR = false;
+    public static boolean KICKER_EXTENDED = false;
+    public static boolean ARM_EXTENDED = false;
     
     //Compressor Ports
     public static final int PRESSURE_SWITCH = 14;

@@ -9,7 +9,6 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.templates.commands.Ramp.ExtendRamp;
 
 /**
  *
@@ -17,16 +16,16 @@ import edu.wpi.first.wpilibj.templates.commands.Ramp.ExtendRamp;
  */
 public class Kicker extends Subsystem{
 
-    public DoubleSolenoid kickerSolenoids;
+    public static DoubleSolenoid kickerSolenoids;
+    public static boolean isExtended = false;
     
-    protected void initDefaultCommand() {
-        setDefaultCommand(new ExtendRamp());
-    }
+    protected void initDefaultCommand() { }
     
     public Kicker(){
         super("Kicker");
         
-        kickerSolenoids = new DoubleSolenoid(1,2);
+        kickerSolenoids = new DoubleSolenoid(5,6);
+        kickerSolenoids.set(DoubleSolenoid.Value.kReverse);
     }
     
 }

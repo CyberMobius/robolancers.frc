@@ -19,7 +19,7 @@ public class ExtendRamp extends CommandBase{
     protected void initialize() { }
 
     protected void execute() { 
-        CommandBase.ramp.extend();
+        //CommandBase.ramp.extend();
     }
 
     protected boolean isFinished() { return hasFinished; }
