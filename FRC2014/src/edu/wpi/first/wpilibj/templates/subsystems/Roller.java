@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.Roller.PivotArm;
 
 /**
  *
@@ -22,6 +21,7 @@ public class Roller extends Subsystem{
     
     public SpeedController rollerMotor;
     public static DoubleSolenoid pivotArmPistons;
+    public static boolean isExtended = false;
             
     protected void initDefaultCommand() { }
     
@@ -29,9 +29,9 @@ public class Roller extends Subsystem{
         super("Roller");
         
         rollerMotor = new Victor(RobotMap.ROLLER_MOTOR);
-        pivotArmPistons = new DoubleSolenoid(1,2); //TODO: get DS Module Numbers?
+        pivotArmPistons = new DoubleSolenoid(3,4);
         
-        pivotArmPistons.set(Value.kOff); //Default Off 
+        pivotArmPistons.set(Value.kReverse); //Default retracted
     }
     
     

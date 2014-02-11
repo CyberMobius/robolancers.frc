@@ -36,4 +36,8 @@ public class Ramp extends Subsystem{
     public void extend(){
         rampMotor.set(0.2); //set the motor to 20% power
     }
+    
+    public void retract(){
+        if(!rampLimitSwitch.get()) rampMotor.set(-0.2); //set the motor to 20% power
+    }
 }

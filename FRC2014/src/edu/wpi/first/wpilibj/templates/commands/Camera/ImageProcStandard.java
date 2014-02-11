@@ -6,6 +6,7 @@
 
 package edu.wpi.first.wpilibj.templates.commands.Camera;
 
+import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -15,16 +16,17 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 public class ImageProcStandard extends CommandBase {
     boolean hasFinished;
+    //public AxisCamera axisCamera;
     
     protected void initialize() {
-        
+     // axisCamera = AxisCamera.getInstance(); 
     }
 
     protected void execute() {
         
     }
 
-    protected boolean isFinished() { return hasFinished; }
+    protected boolean isFinished() { return true; }
 
     protected void end() { }
 

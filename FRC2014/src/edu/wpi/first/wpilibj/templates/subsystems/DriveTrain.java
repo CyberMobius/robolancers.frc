@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.DriveTrain.DriveLoop;
@@ -19,12 +18,14 @@ import edu.wpi.first.wpilibj.templates.commands.DriveTrain.DriveLoop;
  */
 
 public class DriveTrain extends Subsystem{
-    private RobotDrive driveStandard, driveSlide;
-    private double x, y, leftDrive, rightDrive, rotateValue;
-    
+    private RobotDrive driveStandard;
+    private double x, y, leftDrive, rightDrive;
+    public static boolean isHighGear = true;
+            
     public static SpeedController leftFrontMotor, rightFrontMotor, leftRearMotor, rightRearMotor; //Standard Drive Motors
     public static SpeedController sliderMotor1, sliderMotor2; //Standard Drive Motors
     public static DoubleSolenoid sonicShifterPair;
+    public boolean isFast = true;
     
     public DriveTrain(){
         super("Drive Train");
@@ -47,7 +48,7 @@ public class DriveTrain extends Subsystem{
     }
     
     public void moveWithJoystick(double moveValue, double rotateValue, double speed){
-        if (RobotMap.ARCADE_DRIVE || RobotMap.RC_DRIVE || RobotMap.WHEEL){
+        if (RobotMap.ARCADE_DRIVE || RobotMap.RC_DRIVE){
             y = (moveValue * moveValue * moveValue) *speed;
             x = (rotateValue *rotateValue *rotateValue) *speed;
             driveStandard.arcadeDrive(y,x);
@@ -58,12 +59,4 @@ public class DriveTrain extends Subsystem{
             driveStandard.tankDrive(leftDrive,rightDrive);
         }
     }
-     
-     public int getGearType(){
-         if(RobotMap.HIGH_GEAR = false){ //in low gear
-             return 1;
-         }else{
-             return 0;
-         }
-     }
 }

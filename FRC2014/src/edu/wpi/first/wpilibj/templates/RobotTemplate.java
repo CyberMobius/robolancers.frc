@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.templates.subsystems.Kicker;
+import edu.wpi.first.wpilibj.templates.subsystems.Roller;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -65,6 +68,10 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putBoolean("Sonic Shifter", DriveTrain.isHighGear);
+        SmartDashboard.putBoolean("Roller Piston", Roller.isExtended);
+        SmartDashboard.putBoolean("Kicker", Kicker.isExtended);
+        
     }
     
     /**

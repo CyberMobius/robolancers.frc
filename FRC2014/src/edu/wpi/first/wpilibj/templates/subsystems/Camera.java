@@ -7,6 +7,7 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.templates.commands.Camera.ImageProcStandard;
 
 /**
@@ -15,12 +16,16 @@ import edu.wpi.first.wpilibj.templates.commands.Camera.ImageProcStandard;
  */
 public class Camera extends Subsystem{
 
+    public static AxisCamera axisCamera;
+    
     public Camera() {
         super("Camera");
+       
+        axisCamera = AxisCamera.getInstance();
     }
 
     protected void initDefaultCommand() {
-        setDefaultCommand(new ImageProcStandard());
+       //setDefaultCommand(new ImageProcStandard());
     }
     
 }
