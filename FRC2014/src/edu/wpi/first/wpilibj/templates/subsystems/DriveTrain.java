@@ -18,14 +18,13 @@ import edu.wpi.first.wpilibj.templates.commands.DriveTrain.DriveLoop;
  */
 
 public class DriveTrain extends Subsystem{
-    private RobotDrive driveStandard;
+    public RobotDrive driveStandard;
     private double x, y, leftDrive, rightDrive;
     public static boolean isHighGear = true;
             
     public static SpeedController leftFrontMotor, rightFrontMotor, leftRearMotor, rightRearMotor; //Standard Drive Motors
     public static SpeedController sliderMotor1, sliderMotor2; //Standard Drive Motors
     public static DoubleSolenoid sonicShifterPair;
-    public boolean isFast = true;
     
     public DriveTrain(){
         super("Drive Train");
@@ -35,7 +34,7 @@ public class DriveTrain extends Subsystem{
        rightFrontMotor = new Talon(RobotMap.RIGHT_MOTOR_FRONT);
        rightRearMotor = new Talon(RobotMap.RIGHT_MOTOR_REAR);
        
-       sonicShifterPair = new DoubleSolenoid(1,2);
+       sonicShifterPair = new DoubleSolenoid(RobotMap.SS_FOR,RobotMap.SS_REV);
        
        driveStandard = new RobotDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
        driveStandard.setSafetyEnabled(false); //have this so compiler wont show "Robot Drive not outputting enough data"

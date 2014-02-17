@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.subsystems.Camera;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.templates.subsystems.Flaps;
 import edu.wpi.first.wpilibj.templates.subsystems.Kicker;
 import edu.wpi.first.wpilibj.templates.subsystems.Ramp;
 import edu.wpi.first.wpilibj.templates.subsystems.RobotCompressor;
@@ -20,10 +21,11 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     public static DriveTrain driveTrain = new DriveTrain();
     public static RobotCompressor compressor = new RobotCompressor();
-    public static Camera camera = new Camera();
+    //public static Camera camera = new Camera();
     public static Ramp ramp = new Ramp();
     public static Roller roller = new Roller();
     public static Kicker kicker = new Kicker();
+    public static Flaps flaps = new Flaps();
 
 
     

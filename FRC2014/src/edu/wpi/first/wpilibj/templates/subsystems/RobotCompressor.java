@@ -28,10 +28,6 @@ public class RobotCompressor extends Subsystem{
                 
     }
     
-    public void compressor(){
-        
-    }
-    
     protected void initDefaultCommand() {
         setDefaultCommand(new RegulateCompressor());
     }

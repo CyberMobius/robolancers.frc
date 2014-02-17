@@ -6,12 +6,12 @@
 
 package edu.wpi.first.wpilibj.templates.subsystems;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.Ramp.ExtendRamp;
 
 /**
  * @author RoboLancers
@@ -20,24 +20,35 @@ import edu.wpi.first.wpilibj.templates.commands.Ramp.ExtendRamp;
 public class Ramp extends Subsystem{
     
     public SpeedController rampMotor;
-    public DigitalInput rampLimitSwitch;
+    public AnalogPotentiometer potentiometer;
 
     protected void initDefaultCommand() {
-        setDefaultCommand(new ExtendRamp());
+        //setDefaultCommand(new RegulateRamp());
     }
     
     public Ramp(){
         super("Ramp");
         
         rampMotor = new Victor(RobotMap.RAMP_MOTOR);
-        rampLimitSwitch = new DigitalInput(RobotMap.RAMP_LIMIT_SWITCH);
+        potentiometer = new AnalogPotentiometer(RobotMap.POTENTIOMETER_PORT);
     }
     
-    public void extend(){
-        rampMotor.set(0.2); //set the motor to 20% power
+    public void regulate(){ //not used unless varaible ramp
+        
+        if(OI.maniStick.getRawButton(11)){
+            rampMotor.set(0.25);
+        }
+        else if(OI.maniStick.getRawButton(10)){
+            rampMotor.set(-0.25);
+        }else{
+            rampMotor.set(0.0);
+        }
     }
     
-    public void retract(){
-        if(!rampLimitSwitch.get()) rampMotor.set(-0.2); //set the motor to 20% power
+    public String getRampStatus(){
+        if(potentiometer.get() < 0.2) return "Low";
+        else if(potentiometer.get() > 0.45 && potentiometer.get() < 0.55) return "Mid";
+        else if( potentiometer.get() > 0.90) return "High";
+        else return "??? OVER CLOCK ???";
     }
 }

@@ -12,17 +12,18 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  *
  * @author RoboLancers
  */
-public class ExtendRamp extends CommandBase{
-
-    private boolean hasFinished;
+public class RegulateRamp extends CommandBase{
     
+    public RegulateRamp(){
+        requires(ramp);
+    }
     protected void initialize() { }
 
     protected void execute() { 
-        //CommandBase.ramp.extend();
+        ramp.regulate();
     }
 
-    protected boolean isFinished() { return hasFinished; }
+    protected boolean isFinished() { return false; }
 
     protected void end() { }
 
