@@ -9,6 +9,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
@@ -24,7 +25,7 @@ public class Kicker extends Subsystem{
     public Kicker(){
         super("Kicker");
         
-        kickerSolenoids = new DoubleSolenoid(5,6);
+        kickerSolenoids = new DoubleSolenoid(RobotMap.KICK_FOR,RobotMap.KICK_REV);
         kickerSolenoids.set(DoubleSolenoid.Value.kReverse);
     }
     

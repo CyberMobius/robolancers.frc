@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.Compressor.SolenoidToggle;
-import edu.wpi.first.wpilibj.templates.commands.Ramp.ExtendRamp;
-import edu.wpi.first.wpilibj.templates.commands.Roller.ActivateRoller;
+import edu.wpi.first.wpilibj.templates.commands.Ramp.RampDown;
+import edu.wpi.first.wpilibj.templates.commands.Ramp.RampMid;
+import edu.wpi.first.wpilibj.templates.commands.Ramp.RampUp;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.templates.subsystems.Kicker;
 import edu.wpi.first.wpilibj.templates.subsystems.Roller;
@@ -44,11 +45,13 @@ public class OI {
     
     public OI(){
         driveStickBtn6.whenPressed(new SolenoidToggle(CommandBase.driveTrain, DriveTrain.sonicShifterPair, DriveTrain.isHighGear));
-        driveStickBtn5.whenReleased(new SolenoidToggle(CommandBase.kicker, Kicker.kickerSolenoids, Kicker.isExtended));
+        driveStickBtn5.whenPressed(new SolenoidToggle(CommandBase.kicker, Kicker.kickerSolenoids, Kicker.isExtended));
         
-        maniStickBtn1.whenReleased(new ActivateRoller());
-        maniStickBtn2.whenReleased(new SolenoidToggle(CommandBase.roller, Roller.pivotArmPistons, Roller.isExtended));
-        maniStickBtn6.whenReleased(new ExtendRamp());
+        maniStickBtn3.whenReleased(new SolenoidToggle(CommandBase.roller, Roller.pivotArmPistons, Roller.isExtended)); 
+        maniStickBtn11.whenReleased(new RampUp());
+        maniStickBtn10.whenReleased(new RampMid());
+        maniStickBtn9.whenReleased(new RampDown());
+        //Mani Stick btn 4 and 5 for Flaps. See Flap class.
         
     }
 }

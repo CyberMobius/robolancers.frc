@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  */
 public class DriveLoop extends CommandBase{
     private double moveValue, rotateValue, speed; //standard drives
-    private double leftDrive, rightDrive; //wheel based drive
-    private double moveValueX, moveValueY; //Slide Drive 
+    private double leftDrive, rightDrive;
     
     public DriveLoop(){ requires(driveTrain); }
     
@@ -51,7 +50,7 @@ public class DriveLoop extends CommandBase{
         
         if(RobotMap.RC_DRIVE){
             if((Math.abs(OI.driveStick.getRawAxis(2)) > .1)){
-                moveValue = -OI.driveStick.getRawAxis(2);
+                moveValue = OI.driveStick.getRawAxis(2);
             }else{
                 moveValue = 0;
             }
